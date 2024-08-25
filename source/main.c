@@ -61,7 +61,7 @@ volatile nyx_storage_t *nyx_str = (nyx_storage_t *)NYX_STORAGE_ADDR;
 #define COREBOOT_END_ADDR   0xD0000000
 #define COREBOOT_VER_OFF    0x41
 #define CBFS_DRAM_EN_ADDR   0x4003e000
-#define  CBFS_DRAM_MAGIC    0x4452414D // "DRAM"
+#define CBFS_DRAM_MAGIC     0x4452414D // "DRAM"
 
 static void *coreboot_addr;
 
@@ -376,7 +376,7 @@ void ipl_main()
 
 	minerva_change_freq(FREQ_800);
 
-	if (!f_stat("payload.bin", NULL) && f_stat("no_launch_payload.bin", NULL))
+	if (f_stat("no_launch_payload.bin", NULL))
 	{
 		launch_payload_bin();
 	}
